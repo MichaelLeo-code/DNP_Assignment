@@ -33,6 +33,10 @@ builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
 
 var app = builder.Build();
 
+app.UseHttpsRedirection();
+
+app.UseAuthentication();
+
 app.UseCors(x => x
     .AllowAnyMethod()
     .AllowAnyHeader()
@@ -45,10 +49,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthentication();
 
 app.UseAuthorization();
 

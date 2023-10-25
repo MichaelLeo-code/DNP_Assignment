@@ -15,10 +15,10 @@ public static class AuthorizationPolicies
             options.AddPolicy("SecurityLevel4", a =>
                 a.RequireAuthenticatedUser().RequireClaim("SecurityLevel", "4", "5"));
     
-            options.AddPolicy("MustBeTeacher", a =>
-                a.RequireAuthenticatedUser().RequireClaim("Role", "Teacher"));
+            options.AddPolicy("MustBeStudent", a =>
+                a.RequireAuthenticatedUser().RequireClaim("Role", "Student"));
     
-            options.AddPolicy("SecurityLevel2OrAbove", a =>
+            options.AddPolicy("SecurityLevel2orAbove", a =>
                 a.RequireAuthenticatedUser().RequireAssertion(context =>
                 {
                     Claim? levelClaim = context.User.FindFirst(claim => claim.Type.Equals("SecurityLevel"));
