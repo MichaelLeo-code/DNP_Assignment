@@ -5,21 +5,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Shared.DTOs;
 using Shared.Models;
+using Validation.ILogic;
 using WebAPI.Services;
 
 namespace WebAPI.Controllers;
 
 [ApiController]
-[Route("login")]
+[Route("")]
 public class AuthController : ControllerBase
 {
     private readonly IConfiguration config;
     private readonly IAuthorizationService authService;
+    private readonly IUserLogic userLogic;
 
-    public AuthController(IConfiguration config, IAuthorizationService authService)
+    public AuthController(IConfiguration config, IAuthorizationService authService, IUserLogic userLogic)
     {
         this.config = config;
         this.authService = authService;
+        this.userLogic = userLogic;
     }
     
     private List<Claim> GenerateClaims(User user)
@@ -62,7 +65,7 @@ public class AuthController : ControllerBase
         return serializedToken;
     }
     
-    [HttpPost]
+    [HttpPost, Route("login")]
     public async Task<ActionResult> Login([FromBody] UserLoginDto userLoginDto)
     {
         try
@@ -76,5 +79,13 @@ public class AuthController : ControllerBase
         {
             return BadRequest(e.Message);
         }
+    }
+    
+    [HttpPost, Route("register")]
+    public async Task<ActionResult<User>> Register([FromBody] UserCreationDto dto)
+    {
+        // await authService.RegisterUser(user);
+        User user = await userLogic.CreateAsync(dto);
+        return Ok(user);
     }
 }

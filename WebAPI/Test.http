@@ -1,2 +1,23 @@
-GET http://localhost:5150/test/authorized
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKV1RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiIzZDM0MTQwNC05ZjI4LTQ1MTYtOWRlMi1hOTIyNmI2MGFiOTgiLCJpYXQiOiIyMS8xMC8yMDIzIDE1OjA0OjQ0IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6ImN1YmVjbyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkNyZWF0b3IiLCJEaXNwbGF5TmFtZSI6Ik1pY2hhZWwgTGVvIiwiRW1haWwiOiJtaWNoYWVsLmxlby5ka0BnbWFpbC5jb20iLCJBZ2UiOiIyMCIsIkRvbWFpbiI6ImN1YmVjbyIsIlNlY3VyaXR5TGV2ZWwiOiI0IiwiZXhwIjoxNjk3OTA0Mjg0LCJpc3MiOiJKV1RBdXRoZW50aWNhdGlvblNlcnZlciIsImF1ZCI6IkpXVFNlcnZpY2VCbGF6b3JXYXNtQ2xpZW50In0.z7amDBsXoERvyPa1Fi1y_4-K5hThUm6WtQ330nbyYR5yf-Ykk_714IS3kORYIIhUupmJh8M-2Dhyf9899-VMsQ
+#GET http://localhost:5150/test/authorized
+#Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKV1RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiIzZDM0MTQwNC05ZjI4LTQ1MTYtOWRlMi1hOTIyNmI2MGFiOTgiLCJpYXQiOiIyMS8xMC8yMDIzIDE1OjA0OjQ0IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6ImN1YmVjbyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkNyZWF0b3IiLCJEaXNwbGF5TmFtZSI6Ik1pY2hhZWwgTGVvIiwiRW1haWwiOiJtaWNoYWVsLmxlby5ka0BnbWFpbC5jb20iLCJBZ2UiOiIyMCIsIkRvbWFpbiI6ImN1YmVjbyIsIlNlY3VyaXR5TGV2ZWwiOiI0IiwiZXhwIjoxNjk3OTA0Mjg0LCJpc3MiOiJKV1RBdXRoZW50aWNhdGlvblNlcnZlciIsImF1ZCI6IkpXVFNlcnZpY2VCbGF6b3JXYXNtQ2xpZW50In0.z7amDBsXoERvyPa1Fi1y_4-K5hThUm6WtQ330nbyYR5yf-Ykk_714IS3kORYIIhUupmJh8M-2Dhyf9899-VMsQ
+
+POST http://localhost:5150/register
+Content-Type: application/json
+
+{
+  "username": "seva",
+  "password": "password",
+  "email": "seva@gmail.com",
+  "domain": "seva",
+  "name": "seva",
+  "role": "seva",
+  "age": 19,
+  "securityLevel": 2
+}
+
+###
+
+POST http://localhost:5150/login
+Content-Type: application/json
+
+{ "Username" : "seva", "Password" : "password" }
