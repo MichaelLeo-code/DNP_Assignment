@@ -7,7 +7,6 @@ using Shared.Authorization;
 using Validation.IDaos;
 using Validation.ILogic;
 using Validation.Logic;
-using WebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,7 +33,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 AuthorizationPolicies.AddPolicies(builder.Services);
 
-builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
 builder.Services.AddScoped<FileContext>();
 builder.Services.AddScoped<IUserDao, UserFileDao>();
 builder.Services.AddScoped<IUserLogic, UserLogic>();

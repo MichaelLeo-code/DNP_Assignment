@@ -5,5 +5,6 @@ namespace Validation.ILogic;
 
 public interface IUserLogic
 {
-    Task<User> CreateAsync(UserCreationDto userToCreate);
+    Task<User> ValidateUser(string username, string password);
+    Task<User> CreateAsync(UserCreationDto dto);
 }

@@ -6,7 +6,6 @@ using Microsoft.IdentityModel.Tokens;
 using Shared.DTOs;
 using Shared.Models;
 using Validation.ILogic;
-using WebAPI.Services;
 
 namespace WebAPI.Controllers;
 
@@ -15,13 +14,11 @@ namespace WebAPI.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly IConfiguration config;
-    private readonly IAuthorizationService authService;
     private readonly IUserLogic userLogic;
 
-    public AuthController(IConfiguration config, IAuthorizationService authService, IUserLogic userLogic)
+    public AuthController(IConfiguration config, IUserLogic userLogic)
     {
         this.config = config;
-        this.authService = authService;
         this.userLogic = userLogic;
     }
     
@@ -70,7 +67,7 @@ public class AuthController : ControllerBase
     {
         try
         {
-            User user = await authService.ValidateUser(userLoginDto.Username, userLoginDto.Password);
+            User user = await userLogic.ValidateUser(userLoginDto.Username, userLoginDto.Password);
             string token = GenerateJwt(user);
     
             return Ok(token);
