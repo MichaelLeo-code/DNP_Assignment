@@ -38,5 +38,6 @@ public class FileContext
         string serialized = JsonSerializer.Serialize(dataContainer, new JsonSerializerOptions{WriteIndented = true});
         File.WriteAllText(filePath, serialized);
         dataContainer = null;
+        
     }
 }
