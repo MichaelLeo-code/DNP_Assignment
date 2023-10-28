@@ -1,0 +1,21 @@
+﻿@page "/post/{postId:int}"
+@using HTTPServices.IServices
+@inject IPostService postService
+
+@if (post == null)
+{
+}
+else
+{
+    <h3>@post.body</h3>
+}
+
+@code {
+    [Parameter] public int postId { get; init; }
+    private global::Shared.Models.Post post;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        post = await postService.GetByIdAsync(postId);
+    }
+}

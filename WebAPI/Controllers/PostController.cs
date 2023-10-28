@@ -31,4 +31,34 @@ public class PostController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
+    
+    [HttpGet]
+    public async Task<ActionResult> GetAsync()
+    {
+        try
+        {
+            var posts = await postLogic.GetAsync();
+            return Ok(posts);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
+    }
+    
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult> GetByIdAsync([FromRoute]int id)
+    {
+        try
+        {
+            var posts = await postLogic.GetByIdAsync(id);
+            return Ok(posts);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
+    }
 }

@@ -40,11 +40,13 @@
     private string body;
     private string errorLabel;
     private int authorId;
+    private string authorUsername;
 
     protected override async Task OnInitializedAsync()
     {
         AuthenticationState authState = await AuthState;
         authorId = Convert.ToInt32(authState.User.Claims.FirstOrDefault(c => c.Type.Equals("Id"))!.Value);
+        authorUsername = authState.User.Claims.First(claim => claim.Type.Equals(ClaimTypes.Name)).Value;
     }
     
     private async Task PostAsync()
@@ -52,7 +54,7 @@
         errorLabel = "";
         try
         {
-            await postService.PostAsync(title, body, authorId);
+            await postService.PostAsync(title, body, authorId, authorUsername);
         }
         catch (Exception e)
         {

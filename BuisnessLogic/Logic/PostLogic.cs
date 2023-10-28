@@ -21,10 +21,21 @@ public class PostLogic : IPostLogic
             title = dto.title,
             body = dto.body,
             authorId = dto.authorId,
+            authorUsername = dto.authorUsername
         };
     
         Post created = await postDao.CreateAsync(toCreate);
     
         return created;
+    }
+
+    public Task<IEnumerable<Post>> GetAsync()
+    {
+        return postDao.GetAsync();
+    }
+
+    public Task<Post> GetByIdAsync(int id)
+    {
+        return postDao.GetByIsAsync(id);
     }
 }

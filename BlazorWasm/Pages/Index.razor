@@ -1,1 +1,41 @@
 ﻿@page "/"
+@using HTTPServices.IServices
+@using HTTPServices.Implementations
+@inject IPostService postService
+@inject NavigationManager navMgr
+
+
+@if (posts == null)
+{
+}
+else if (!posts.Any())
+{
+    <p>No Todos to display</p>
+}
+else
+{
+    <div>
+        @foreach (var item in posts)
+        {
+            <div class="card" @onclick="() => OpenPost(item.postId)">
+                <h3>@item.title</h3>
+                <div>@item.body</div>
+                <div>Posted by @item.authorUsername</div>
+            </div>
+        }
+    </div>
+}
+
+@code{
+    private IEnumerable<global::Shared.Models.Post>? posts;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        posts = await postService.GetAsync();
+    }
+
+    private async Task OpenPost(int id)
+    {
+        navMgr.NavigateTo("/post/" + id);
+    }
+}
