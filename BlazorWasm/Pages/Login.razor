@@ -1,37 +1,75 @@
 ﻿@page "/login"
 @using HTTPServices.IServices
+@using global::Shared.DTOs
+@using System.Security.Claims
 @inject IAuthService authService
 @inject NavigationManager navMgr
 
 <AuthorizeView>
     <NotAuthorized>
-        <div class="card">
-            <h3>Please login</h3>
-            <div class="field">
-                <label>User name:</label>
-                <input type="text" @bind="userName"/>
-            </div>
-            <div class="field">
-                <label style="text-align: center">Password:</label>
-                <input type="password" @bind="password"/>
-            </div>
-            @if (!string.IsNullOrEmpty(errorLabel))
-            {
+        <div class="d-flex flex-row">
+            <div class="card">
+                <h3>Please login</h3>
                 <div class="field">
-                    <label style="color: red">
-                        @errorLabel
-                    </label>
+                    <label>User name:</label>
+                    <input type="text" @bind="userName"/>
                 </div>
-            }
-            <div class="field">
-                @* <button class="loginbtn" @onclick="LoginAsync">Log in</button> *@
-                <RadzenButton Text="Log in" Click="LoginAsync"></RadzenButton>
+                <div class="field">
+                    <label style="text-align: center">Password:</label>
+                    <input type="password" @bind="password"/>
+                </div>
+                @if (!string.IsNullOrEmpty(errorLabel))
+                {
+                    <div class="field">
+                        <label style="color: red">
+                            @errorLabel
+                        </label>
+                    </div>
+                }
+                <div class="field">
+                    <button class="button" @onclick="LoginAsync">Log in</button>
+                    @* <RadzenButton Text="Log in" Click="LoginAsync"></RadzenButton> *@
+                </div>
+            </div>
+            <div class="card">
+                <h3>Or create new account</h3>
+                <div class="field">
+                    <label>Your name:</label>
+                    <input type="text" @bind="name"/>
+                </div>
+                <div class="field">
+                    <label>Chosen username:</label>
+                    <input type="text" @bind="userNameR"/>
+                </div>
+                <div class="field">
+                    <label style="text-align: center">Password:</label>
+                    <input type="password" @bind="passwordR"/>
+                </div>
+                <div class="field">
+                    <label style="text-align: center">E-mail:</label>
+                    <input type="text" @bind="email"/>
+                </div>
+                <div class="field">
+                    <label style="text-align: center">Age:</label>
+                    <input type="number" min="0" max="200" @bind="age"/>
+                </div>
+                @if (!string.IsNullOrEmpty(errorLabel))
+                {
+                    <div class="field">
+                        <label style="color: red">
+                            @errorLabel
+                        </label>
+                    </div>
+                }
+                <div class="field">
+                    <button class="button" @onclick="RegisterAsync">Register</button>
+                </div>
             </div>
         </div>
     </NotAuthorized>
     <Authorized>
         <div class="card">
-            <h3>Hello, @context.User.Identity.Name</h3>
+            <h3>Hello, @context.User.Claims.First(c => c.Type.Equals("DisplayName")).Value!</h3>
         </div>
     </Authorized>
 </AuthorizeView>
@@ -39,6 +77,13 @@
 @code {
     private string userName;
     private string password;
+    
+    //R stands for register
+    private string userNameR;
+    private string passwordR;
+    private string email;
+    private string name;
+    private int age;
     private string errorLabel;
 
     private async Task LoginAsync()
@@ -47,7 +92,31 @@
         try
         {
             await authService.LoginAsync(userName, password);
-            navMgr.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            errorLabel = $"Error: {e.Message}";
+        }
+    }
+    
+    private async Task RegisterAsync()
+    {
+        errorLabel = "";
+        try
+        {
+            UserCreationDto dto = new()
+            {
+                Username = userNameR,
+                Password = passwordR,
+                Age = age,
+                Email = email,
+                Domain = email.Split('@').ElementAt(1),
+                Name = name,
+                Role = null,
+                SecurityLevel = 0
+            };
+            await authService.RegisterAsync(dto);
         }
         catch (Exception e)
         {

@@ -1,18 +1,21 @@
-﻿using System.Text.Json;
+﻿using System.ComponentModel;
+using System.Text.Json;
 using Shared.Models;
 
 namespace FileData;
 
 public class FileContext
 {
-    private const string filePath = "data.json";
-    private DataContainer? dataContainer;
+    private const string fileUsers = "users.json";
+    private const string filePosts = "posts.json";
+    private UserContainer? userContainer;
+    private PostContainer? postContainer;
 
     public FileContext()
     {
-        if (!File.Exists(filePath))
+        if (!File.Exists(fileUsers))
         {
-            dataContainer = new ()
+            userContainer = new UserContainer()
             {
                 Users = new List<User>()
                 {
@@ -43,28 +46,60 @@ public class FileContext
                 }
             };
         }
+        if (!File.Exists(filePosts))
+        {
+            postContainer = new PostContainer()
+            {
+                Posts = new List<Post>()
+            };
+        }
     }
     
     public ICollection<User> Users
     {
         get
         {
-            LoadData();
-            return dataContainer!.Users;
+            LoadUsers();
+            return userContainer!.Users;
+        }
+    }
+    
+    public ICollection<Post> Posts
+    {
+        get
+        {
+            LoadPosts();
+            return postContainer!.Posts;
         }
     }
 
-    private void LoadData()
+    private void LoadPosts()
     {
-        if (dataContainer != null) return;
-        string content = File.ReadAllText(filePath);
-        dataContainer = JsonSerializer.Deserialize<DataContainer>(content);
+        if (postContainer != null) return;
+        string content = File.ReadAllText(filePosts); 
+        postContainer = JsonSerializer.Deserialize<PostContainer>(content);
+    }
+    
+    private void LoadUsers()
+    {
+        if (userContainer != null) return;
+        string content = File.ReadAllText(fileUsers);
+        userContainer = JsonSerializer.Deserialize<UserContainer>(content);
     }
     
     public void SaveChanges()
     {
-        string serialized = JsonSerializer.Serialize(dataContainer, new JsonSerializerOptions{WriteIndented = true});
-        File.WriteAllText(filePath, serialized);
-        dataContainer = null;
+        if (userContainer != null)
+        {
+            string serialized = JsonSerializer.Serialize(userContainer, new JsonSerializerOptions{WriteIndented = true});
+            File.WriteAllText(fileUsers, serialized);
+            userContainer = null;
+        }
+        if (postContainer != null)
+        {
+            string serialized = JsonSerializer.Serialize(postContainer, new JsonSerializerOptions{WriteIndented = true});
+            File.WriteAllText(filePosts, serialized);
+            userContainer = null;
+        }
     }
 }

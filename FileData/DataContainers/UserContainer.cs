@@ -3,7 +3,7 @@ using Shared.Models;
 
 namespace FileData;
 
-public class DataContainer
+public class UserContainer
 {
     public ICollection<User> Users { get; set; }
 }

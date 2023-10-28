@@ -14,6 +14,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddTransient(sp => new HttpClient() { BaseAddress = new Uri("http://localhost:5150") });
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddScoped<IAuthService, JwtAuthService>();
+builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthProvider>();
 
 AuthorizationPolicies.AddPolicies(builder.Services);

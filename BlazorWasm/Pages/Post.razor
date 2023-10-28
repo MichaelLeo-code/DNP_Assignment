@@ -1,0 +1,63 @@
+﻿@page "/post"
+@using HTTPServices.IServices
+@using System.Security.Claims
+@inject IPostService postService
+@attribute [Authorize]
+
+<PageTitle>Counter</PageTitle>
+
+<h3>Must Be Logged In To View</h3>
+
+<div class="card">
+    <h3>Post something great!</h3>
+    <div class="field">
+        <label>Title:</label>
+        <input type="text" @bind="title"/>
+    </div>
+    <div class="field">
+        <label style="text-align: center">Body:</label>
+        <textarea class="large_field" type="text" @bind="body"></textarea>
+    </div>
+    @if (!string.IsNullOrEmpty(errorLabel))
+    {
+        <div class="field">
+            <label style="color: red">
+                @errorLabel
+            </label>
+        </div>
+    }
+    <div class="field">
+        <button class="button" @onclick="PostAsync">Post</button>
+        @* <RadzenButton Text="Log in" Click="LoginAsync"></RadzenButton> *@
+    </div>
+</div>
+
+@code {
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+    
+    private string title;
+    private string body;
+    private string errorLabel;
+    private int authorId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState authState = await AuthState;
+        authorId = Convert.ToInt32(authState.User.Claims.FirstOrDefault(c => c.Type.Equals("Id"))!.Value);
+    }
+    
+    private async Task PostAsync()
+    {
+        errorLabel = "";
+        try
+        {
+            await postService.PostAsync(title, body, authorId);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            errorLabel = $"Error: {e.Message}";
+        }
+    }
+}
