@@ -12,11 +12,11 @@
     <h3>Post something great!</h3>
     <div class="field">
         <label>Title:</label>
-        <input type="text" @bind="title"/>
+        <input type="text" @bind="title" @oninput="OnChange"/>
     </div>
     <div class="field">
         <label style="text-align: center">Body:</label>
-        <textarea class="large_field" type="text" @bind="body"></textarea>
+        <textarea class="large_field" type="text" @bind="body" @oninput="OnChange"></textarea>
     </div>
     @if (!string.IsNullOrEmpty(errorLabel))
     {
@@ -79,5 +79,10 @@
             Console.WriteLine(e);
             errorLabel = $"Error: {e.Message}";
         }
+    }
+
+    private void OnChange()
+    {
+        showMessage = false;
     }
 }
