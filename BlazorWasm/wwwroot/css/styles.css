@@ -41,3 +41,11 @@
 .button-row{
     margin-top: 15px;
 }
+
+.author_caption{
+    text-align: left;
+    color: #b1b2b4;
+    font-size: 10pt;
+    padding-top: 14px;
+    font-weight: 550;
+}

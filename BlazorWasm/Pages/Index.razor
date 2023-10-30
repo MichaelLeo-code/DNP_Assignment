@@ -4,6 +4,7 @@
 @inject IPostService postService
 @inject NavigationManager navMgr
 
+<PageTitle>Nedoreddit | Home</PageTitle>
 
 @if (posts == null)
 {
@@ -14,13 +15,13 @@ else if (!posts.Any())
 }
 else
 {
-    <div>
+    <div class="d-flex flex-row flex-wrap">
         @foreach (var item in posts)
         {
             <div class="card" @onclick="() => OpenPost(item.postId)">
                 <h3>@item.title</h3>
                 <div>@item.body</div>
-                <div>Posted by @item.authorUsername</div>
+                <div class="author_caption">Posted by @item.authorUsername</div>
             </div>
         }
     </div>

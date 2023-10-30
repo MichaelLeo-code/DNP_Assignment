@@ -16,7 +16,7 @@ public class PostService : IPostService
         this.client = client;
     }
     
-    public async Task PostAsync(string title, string body, int authorId, string authorUsername)
+    public async Task<HttpResponseMessage> PostAsync(string title, string body, int authorId, string authorUsername)
     {
         PostCreationDto postDto = new()
         {
@@ -36,6 +36,8 @@ public class PostService : IPostService
         {
             throw new Exception(responseContent);
         }
+
+        return response;
     }
 
     public async Task<IEnumerable<Post>> GetAsync()

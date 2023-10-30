@@ -26,6 +26,22 @@
             </label>
         </div>
     }
+    @if (response is {IsSuccessStatusCode: true })
+    {
+        body = "";
+        title = "";
+        response = null;
+        StateHasChanged();
+        showMessage = true;
+    }
+    @if (showMessage)
+    {
+        <div class="field">
+            <label>
+                Posted successfully!
+            </label>
+        </div>
+    }
     <div class="field">
         <button class="button" @onclick="PostAsync">Post</button>
         @* <RadzenButton Text="Log in" Click="LoginAsync"></RadzenButton> *@
@@ -41,6 +57,8 @@
     private string errorLabel;
     private int authorId;
     private string authorUsername;
+    private HttpResponseMessage? response;
+    private bool showMessage;
 
     protected override async Task OnInitializedAsync()
     {
@@ -54,7 +72,7 @@
         errorLabel = "";
         try
         {
-            await postService.PostAsync(title, body, authorId, authorUsername);
+            response = await postService.PostAsync(title, body, authorId, authorUsername);
         }
         catch (Exception e)
         {
