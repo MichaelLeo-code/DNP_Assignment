@@ -113,7 +113,7 @@
                 Email = email,
                 Domain = email.Split('@').ElementAt(1),
                 Name = name,
-                Role = null,
+                Role = "null",
                 SecurityLevel = 0
             };
             await authService.RegisterAsync(dto);
