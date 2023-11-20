@@ -1,0 +1,67 @@
+{
+  "Posts": [
+    {
+      "title": "Foosball",
+      "body": "Today I lost at foosball game and had to cry for 3 hours straight at home. I\u0027m running out of tissues at home and my eyes.",
+      "authorId": 6,
+      "authorUsername": "Pollo",
+      "postId": 1
+    },
+    {
+      "title": "High stakes",
+      "body": "Today was an important day. We have a DNP lecture - that means I have a perfect chance to rematch and win today! That will show them! ",
+      "authorId": 6,
+      "authorUsername": "Pollo",
+      "postId": 2
+    },
+    {
+      "title": "Yet again \uD83D\uDE2D",
+      "body": "I lost.",
+      "authorId": 6,
+      "authorUsername": "Pollo",
+      "postId": 3
+    },
+    {
+      "title": "The creator\u0027s notice",
+      "body": "Use nedoreddit appropriately!\nUse it to share knowledge and great ideas, don\u0027t spam and be respectful and reasonable and kind!",
+      "authorId": 1,
+      "authorUsername": "cubeco",
+      "postId": 4
+    },
+    {
+      "title": "Hey everyone",
+      "body": "Hey guys my name\u0027s Seva.",
+      "authorId": 3,
+      "authorUsername": "seva",
+      "postId": 5
+    },
+    {
+      "title": "Last test",
+      "body": "I just had to write one last post",
+      "authorId": 1,
+      "authorUsername": "cubeco",
+      "postId": 6
+    },
+    {
+      "title": "Demo",
+      "body": "demo",
+      "authorId": 1,
+      "authorUsername": "cubeco",
+      "postId": 7
+    },
+    {
+      "title": "Im a demo user",
+      "body": "Hello!",
+      "authorId": 7,
+      "authorUsername": "demo",
+      "postId": 8
+    },
+    {
+      "title": "johhviugv",
+      "body": "ohhv9uygg9y",
+      "authorId": 1,
+      "authorUsername": "cubeco",
+      "postId": 9
+    }
+  ]
+}

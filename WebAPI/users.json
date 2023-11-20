@@ -1,0 +1,81 @@
+{
+  "Users": [
+    {
+      "Username": "cubeco",
+      "Password": "onetwo3FOUR",
+      "Email": "michael.leo.dk@gmail.com",
+      "Domain": "cubeco",
+      "Name": "Michael Leo",
+      "Role": "Creator",
+      "Age": 20,
+      "SecurityLevel": 4,
+      "Id": 1
+    },
+    {
+      "Username": "ded",
+      "Password": "incorrect",
+      "Email": "ded@gmail.com",
+      "Domain": "old",
+      "Name": "Oldie Ancient",
+      "Role": "Student",
+      "Age": 108,
+      "SecurityLevel": 2,
+      "Id": 2
+    },
+    {
+      "Username": "seva",
+      "Password": "password",
+      "Email": "seva@gmail.com",
+      "Domain": "seva",
+      "Name": "Seva",
+      "Role": "seva",
+      "Age": 19,
+      "SecurityLevel": 0,
+      "Id": 3
+    },
+    {
+      "Username": "string",
+      "Password": "string",
+      "Email": "string",
+      "Domain": "string",
+      "Name": "string",
+      "Role": "string",
+      "Age": 0,
+      "SecurityLevel": 0,
+      "Id": 4
+    },
+    {
+      "Username": "Pollo",
+      "Password": "123",
+      "Email": "podjo@pollo.com",
+      "Domain": "pollo.com",
+      "Name": "Hugo",
+      "Role": "null",
+      "Age": 5,
+      "SecurityLevel": 0,
+      "Id": 6
+    },
+    {
+      "Username": "demo",
+      "Password": "abc",
+      "Email": "dummy@via.dk",
+      "Domain": "via.dk",
+      "Name": "Demo Smith",
+      "Role": "null",
+      "Age": 15,
+      "SecurityLevel": 0,
+      "Id": 7
+    },
+    {
+      "Username": "faab",
+      "Password": "abd",
+      "Email": "bf@gmail.com",
+      "Domain": "avvv",
+      "Name": "av",
+      "Role": "gaga",
+      "Age": 19,
+      "SecurityLevel": 1,
+      "Id": 8
+    }
+  ]
+}

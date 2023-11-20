@@ -1,0 +1,37 @@
+{
+  "Users": [
+    {
+      "Username": "cubeco",
+      "Password": "onetwo3FOUR",
+      "Email": "michael.leo.dk@gmail.com",
+      "Domain": "cubeco",
+      "Name": "Michael Leo",
+      "Role": "Creator",
+      "Age": 20,
+      "SecurityLevel": 4,
+      "Id": 1
+    },
+    {
+      "Username": "ded",
+      "Password": "incorrect",
+      "Email": "ded@gmail.com",
+      "Domain": "old",
+      "Name": "Oldie Ancient",
+      "Role": "Student",
+      "Age": 108,
+      "SecurityLevel": 2,
+      "Id": 2
+    },
+    {
+      "Username": "seva",
+      "Password": "password",
+      "Email": "seva@gmail.com",
+      "Domain": "seva",
+      "Name": "Seva",
+      "Role": "seva",
+      "Age": 19,
+      "SecurityLevel": 0,
+      "Id": 3
+    }
+  ]
+}
